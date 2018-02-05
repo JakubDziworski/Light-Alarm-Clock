@@ -8,6 +8,7 @@ app.use(bodyParser.json({
     type: 'application/*'
 }));
 
+app.use(express.static('static'));
 app.get('/', (req, res) => res.send('Hello World!'));
 
 const validateSetUpBody = (body) => {
