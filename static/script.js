@@ -1,5 +1,14 @@
-$(document).ready(function () {
-    $('#startAtInput').clockTimePicker();
+$(document).ready(() => {
+    new Picker(document.querySelector('#startAtInput'), {
+        format: 'HH:mm',
+        inline:true,
+        rows: 3
+    });
+    new Picker(document.querySelector('#fadeInMinutesInput'), {
+        format: 'SS',
+        inline:true,
+        rows: 3
+    });
 });
 
 function saveConfig() {
@@ -19,13 +28,11 @@ function saveConfig() {
         data: JSON.stringify(body),
         contentType: 'application/json',
         type: 'POST'
+    }).done(() => {
+        resultSpan.text("Done!");
+        resultSpan.addClass('label-success');
+    }).fail((xhr) => {
+        resultSpan.text("Fail! " + xhr.responseText);
+        resultSpan.addClass('label-danger');
     })
-        .done(() => {
-            resultSpan.text("Done!");
-            resultSpan.addClass('label-success');
-        })
-        .fail((xhr) => {
-            resultSpan.text("Fail! Details: " + xhr.responseText);
-            resultSpan.addClass('label-danger');
-        })
 }

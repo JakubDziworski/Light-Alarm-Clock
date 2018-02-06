@@ -4,9 +4,7 @@ const lightController = require('./light-controller');
 const bodyParser = require('body-parser');
 const t = require('tcomb-validation');
 
-app.use(bodyParser.json({
-    type: 'application/*'
-}));
+app.use(bodyParser.json({type: 'application/*'}));
 
 app.use(express.static('static'));
 app.get('/', (req, res) => res.send('Hello World!'));
