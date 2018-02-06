@@ -9,7 +9,7 @@ app.use(bodyParser.json({type: 'application/*'}));
 app.use(express.static('static'));
 app.get('/', (req, res) => res.send('Hello World!'));
 
-const validateSetUpBody = (body) => {
+const validateSetUpBody = (body,res) => {
     const schema = t.struct({
         startAtHour: t.refinement(t.Number, x => x > 0 && x < 24),
         startAtMinute: t.refinement(t.Number, x => x >= 0 && x < 60),
@@ -24,7 +24,7 @@ const validateSetUpBody = (body) => {
 
 app.post('/set-up', (req, res) => {
     let body = req.body;
-    validateSetUpBody(body);
+    validateSetUpBody(body,res);
     const startHour = body.startAtHour;
     const startMinute = body.startAtMinute;
     const fadeInMinutes = body.fadeInMinutes;

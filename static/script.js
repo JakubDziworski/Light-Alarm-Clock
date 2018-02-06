@@ -1,13 +1,7 @@
 $(document).ready(() => {
-    new Picker(document.querySelector('#startAtInput'), {
-        format: 'HH:mm',
-        inline:true,
-        rows: 3
-    });
-    new Picker(document.querySelector('#fadeInMinutesInput'), {
-        format: 'SS',
-        inline:true,
-        rows: 3
+    $("#startAtInput").timeDropper({
+        format:"HH:mm",
+        setCurrentTime : false
     });
 });
 
